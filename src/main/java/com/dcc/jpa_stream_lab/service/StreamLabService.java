@@ -10,6 +10,7 @@ import java.util.GregorianCalendar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.dcc.jpa_stream_lab.repository.ProductsRepository;
 import com.dcc.jpa_stream_lab.repository.RolesRepository;
@@ -46,7 +47,7 @@ public class StreamLabService {
         // Return the COUNT of all the users from the User table.
         // You MUST use a .stream(), don't listen to the squiggle here!
         // Remember yellow squiggles are warnings and can be ignored.
-    	return 0;
+    	return users.findAll().stream().count();
     }
 
     public List<Product> RDemoTwo()
@@ -59,14 +60,14 @@ public class StreamLabService {
     {
         // Write a query that gets each product whose price is less than or equal to $100.
         // Return the list
-        return null;
+        return products.findAll().stream().filter(product -> product.getPrice() <= 100).toList();
     }
 
     public List<Product> RProblemThree()
     {
         // Write a query that gets each product that CONTAINS an "s" in the products name.
         // Return the list
-    	return null;
+    	return products.findAll().stream().filter(n -> n.getName().contains("s")).toList();
     }
 
     public List<User> RProblemFour()
