@@ -1,5 +1,6 @@
 package com.dcc.jpa_stream_lab.service;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -76,7 +77,10 @@ public class StreamLabService {
         // Return the list
         // Research 'java create specific date' and 'java compare dates'
         // You may need to use the helper classes imported above!
-    	
+//        SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
+//        Date d1 = sdformat.parse('2016-01-01');
+//
+//        return users.findAll().stream().filter(d -> d.getRegistrationDate().compareTo(d1) < 0).toList();
         return null;
     }
 
@@ -84,8 +88,11 @@ public class StreamLabService {
     {
         // Write a query that gets all of the users who registered AFTER 2016 and BEFORE 2018
         // Return the list
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date d1 = simpleDateFormat.parse("2016-01-01");
+        Date d2 = simpleDateFormat.parse("2018-01-01");
 
-        return null;
+        return users.findAll().stream().filter(d -> d.getRegistrationDate().compareTo(d1) > 0 && d.getRegistrationDate().compareTo(d2) < 0).toList();
     }
 
     // <><><><><><><><> R Actions (Read) with Foreign Keys <><><><><><><><><>
@@ -104,7 +111,7 @@ public class StreamLabService {
         // Write a query that retrieves all of the products in the shopping cart of the user who has the email "afton@gmail.com".
         // Return the list
 
-    	return null;
+    	return List<shoppingcartitems> = shoppingcartitems.findAll().stream().filter(i -> i.getUser().getEmail().contains("afton@gmail.com")).toList();
     }
 
     public long RProblemSeven()
